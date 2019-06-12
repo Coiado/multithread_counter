@@ -37,14 +37,13 @@ int primo(int num)
 void* worker(void *arg) {
     int *N = (int*)(arg);
     int M = (*N);
-    while (1) {
-        
+    while (pos < M) {
         pthread_mutex_lock(&trava);
-        if (pos >= M) break;
         int valor = numeros[pos];
         pos++;
-        pthread_mutex_unlock(&trava);
         resposta += primo(valor);
+        pthread_mutex_unlock(&trava);
+        
     }
     return NULL;
 }
